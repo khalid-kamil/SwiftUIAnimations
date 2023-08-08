@@ -1,36 +1,22 @@
-//
-//  ContentView.swift
-//  Animations
-//
-//  Created by Khalid Kamil on 08/08/2023.
-//
+// Creating explicit animations
 
 import SwiftUI
 
 struct ContentView: View {
-  @State private var animationAmount = 1.0
+  @State private var animationAmount = 0.0
 
   var body: some View {
-    print(animationAmount)
-
-    return VStack {
-      Spacer()
-
+    VStack {
       Button("Tap me") {
-        animationAmount += 1
+        withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+          animationAmount += 360
+        }
       }
       .padding(50)
       .background(.red)
       .foregroundColor(.white)
       .clipShape(Circle())
-      .scaleEffect(animationAmount)
-
-      Spacer()
-
-      Stepper("Scale amount", value: $animationAmount.animation(
-        .easeOut(duration: 1)
-        .repeatCount(3, autoreverses: true)
-      ), in: 1...10)
+      .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
     }
     .padding()
   }

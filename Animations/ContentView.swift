@@ -27,7 +27,10 @@ struct ContentView: View {
 
       Spacer()
 
-      Stepper("Scale amount", value: $animationAmount.animation(), in: 1...10)
+      Stepper("Scale amount", value: $animationAmount.animation(
+        .easeOut(duration: 1)
+        .repeatCount(3, autoreverses: true)
+      ), in: 1...10)
     }
     .padding()
   }

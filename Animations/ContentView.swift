@@ -17,12 +17,11 @@ struct ContentView: View {
         DragGesture()
           .onChanged { dragAmount = $0.translation }
           .onEnded({ _ in
-//            withAnimation(.spring()) {
+            withAnimation(.spring()) {
               dragAmount = .zero
-//            }
+            }
           })
       )
-      .animation(.spring(), value: dragAmount)
     }
     .padding()
   }
